@@ -1,5 +1,9 @@
 # Vasukii
 
+<p align="center">
+  <img src="https://github.com/vasukii2026-spec.png" alt="Vasukii logo" width="120" height="120">
+</p>
+
 [![Latest release](https://img.shields.io/github/v/release/vasukii2026-spec/vasukii-app?include_prereleases&label=latest&color=FF8A3D)](https://github.com/vasukii2026-spec/vasukii-app/releases)
 ![Platform](https://img.shields.io/badge/platform-Android-3DDC84)
 ![Distribution](https://img.shields.io/badge/distribution-direct%20APK-lightgrey)
