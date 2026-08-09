@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasukii — download for Android</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08050c;
+    --panel:#0f0916;
+    --panel-2:#140c1e;
+    --line:#241a2e;
+    --amber:#FF8A3D;
+    --amber-dim:rgba(255,138,61,0.14);
+    --text:#EDEAF3;
+    --muted:#8A8398;
+    --danger:#E2564F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{background:var(--bg);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+
+  /* coiling serpent line, drawn once behind the hero */
+  .coil{
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:900px; max-width:220vw; height:520px;
+    opacity:0.5; pointer-events:none;
+  }
+  .coil path{
+    fill:none; stroke:var(--amber); stroke-width:1.1; opacity:0.55;
+  }
+
+  header{
+    position:relative;
+    padding:88px 0 64px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--amber); font-weight:600; margin-bottom:20px; position:relative;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(40px,8vw,64px);
+    letter-spacing:-0.01em;
+    position:relative;
+  }
+  .tagline{
+    margin:18px auto 0;
+    max-width:440px;
+    color:var(--muted);
+    font-size:16px;
+    position:relative;
+  }
+
+  .download-card{
+    position:relative;
+    margin:40px auto 0;
+    max-width:420px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 28px 24px;
+  }
+  .download-card .platform{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    font-size:13px; color:var(--muted); margin-bottom:16px;
+  }
+  .download-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    width:100%;
+    background:var(--amber);
+    color:#1a1006;
+    font-weight:600;
+    font-size:16px;
+    padding:15px 20px;
+    border-radius:11px;
+    text-decoration:none;
+    transition:transform .12s ease, opacity .12s ease;
+  }
+  .download-btn:hover{opacity:0.92;}
+  .download-btn:active{transform:scale(0.98);}
+  .meta{
+    display:flex; justify-content:center; gap:18px;
+    margin-top:14px; font-size:12.5px; color:var(--muted);
+  }
+  .meta span{display:flex; align-items:center; gap:6px;}
+
+  section{padding:56px 0; border-top:1px solid var(--line);}
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:26px;
+    margin-bottom:28px;
+  }
+
+  .features{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  }
+  @media (max-width:520px){ .features{grid-template-columns:1fr;} }
+  .feature{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px 20px 18px;
+  }
+  .feature .num{
+    font-family:'Fraunces',serif; font-style:italic;
+    color:var(--amber); font-size:14px; margin-bottom:10px; display:block;
+  }
+  .feature h3{
+    font-size:15px; font-weight:500; margin-bottom:6px;
+  }
+  .feature p{
+    font-size:13.5px; color:var(--muted);
+  }
+
+  .steps{counter-reset:step;}
+  .step{
+    display:flex; gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .n{
+    counter-increment:step;
+    flex:none;
+    width:28px; height:28px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    color:var(--amber);
+    font-size:13px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:600;
+  }
+  .step .n::before{content:counter(step);}
+  .step p{font-size:14.5px; color:var(--text);}
+  .step p .dim{color:var(--muted); font-size:13px; display:block; margin-top:2px;}
+
+  .notice{
+    display:flex; gap:12px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-left:2px solid var(--amber);
+    border-radius:0 12px 12px 0;
+    padding:16px 18px;
+    font-size:13.5px;
+    color:var(--muted);
+    margin-top:24px;
+  }
+  .notice b{color:var(--text); font-weight:500;}
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12.5px;
+    border-top:1px solid var(--line);
+  }
+  footer a{color:var(--amber); text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="coil" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M -50 260 C 100 60, 250 460, 450 260 S 800 60, 950 260" />
+    <path d="M -50 300 C 100 100, 250 500, 450 300 S 800 100, 950 300" opacity="0.3"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">On-device · non-custodial · Android</p>
+    <h1>Vasukii</h1>
+    <p class="tagline">A wallet that lives on your phone, not on someone else's server. Generate it, use it, own it.</p>
+
+    <div class="download-card">
+      <div class="platform">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        Android · APK · v1.0.0
+      </div>
+      <a class="download-btn" href="#" id="download-link" download="The Vasukii.apk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+        Download for Android
+      </a>
+      <div class="meta">
+        <span>Free</span>
+        <span>·</span>
+        <span>No Play Store account needed</span>
+      </div>
+      <p style="margin-top:14px; font-size:12px; color:var(--muted); text-align:center;">
+        By downloading, you agree to the <a href="terms.html">Terms &amp; Conditions</a>.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What's inside</h2>
+    <div class="features">
+      <div class="feature">
+        <span class="num">i</span>
+        <h3>On-device wallet</h3>
+        <p>Keys are generated and encrypted right on your phone — Vasukii never sees them.</p>
+      </div>
+      <div class="feature">
+        <span class="num">ii</span>
+        <h3>Encrypted messaging</h3>
+        <p>Direct messages and threads, end-to-end encrypted by default.</p>
+      </div>
+      <div class="feature">
+        <span class="num">iii</span>
+        <h3>Standard recovery phrase</h3>
+        <p>12-word backup compatible with MetaMask, Phantom, and other wallets.</p>
+      </div>
+      <div class="feature">
+        <span class="num">iv</span>
+        <h3>Biometric unlock</h3>
+        <p>Face ID / fingerprint, backed by your device's secure hardware.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Installing it</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="n"></span>
+        <p>Tap the download button above on your Android phone.
+          <span class="dim">Downloads straight to your device — no store, no account.</span>
+        </p>
+      </div>
+      <div class="step">
+        <span class="n"></span>
+        <p>Open the downloaded file.
+          <span class="dim">Android will ask to allow installs from this source — that's expected for apps outside the Play Store.</span>
+        </p>
+      </div>
+      <div class="step">
+        <span class="n"></span>
+        <p>Allow the install, then open Vasukii.
+          <span class="dim">Future updates arrive automatically inside the app — you won't need to redownload for most changes.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="notice">
+      <span>
+        <b>Non-custodial by design.</b> Your recovery phrase is shown to you once, during setup — write it down. Vasukii has no way to recover it for you if it's lost.
+      </span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Vasukii · built for people who'd rather hold their own keys
+    <br><br>
+    <a href="terms.html">Terms &amp; Conditions</a>
+  </div>
+</footer>
+
+</body>
+</html>
